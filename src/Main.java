@@ -1,3 +1,5 @@
+import java.io.File;
+import java.io.IOException;
 import java.util.Scanner;
 
 public class Main {
@@ -8,7 +10,18 @@ public class Main {
        Scanner scan = new Scanner(System.in);
        String userInput = "n";
        while (userInput != null && !userInput.equals("")) {
-           
+           System.out.println("Enter name for new list or existing name for old lists, make sure name ends with .txt");
+           userInput = scan.nextLine();
+           if(!userInput.endsWith(".txt")) {
+               userInput = userInput + ".txt";
+           }
+           File current = new File("/Users/yashabazariah/Documents/CodeProject/Lists/" + userInput);
+           try {
+               current.createNewFile();
+           } catch (IOException e) {
+               System.out.println("error when creating file");
+               e.printStackTrace();
+           }
        }
     }
 }
